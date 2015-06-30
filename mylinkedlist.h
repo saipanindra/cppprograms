@@ -28,6 +28,7 @@ public:
     void print_list();
     node* get_middle();
     void remove_duplicates();
+    void remove_duplicates_without_buffer();
     single_linked_list()
     {
 	start = NULL;
@@ -145,6 +146,27 @@ void single_linked_list::remove_duplicates()
 	}
 	temp1->next = temp2;
 	temp1 = temp2;
+    }
+}
+
+void single_linked_list::remove_duplicates_without_buffer()
+{
+    if(!start) return;
+    node *temp1 = start;
+    while(temp1)
+    {
+	node *temp2 = temp1;
+	while(temp2)
+	{
+	    while(temp2->next && temp2->next->info == temp1->info)
+	    {
+
+		temp2->next = temp2->next->next;
+	    }
+	    temp2 = temp2->next;
+
+	}
+	temp1 = temp1->next;
     }
 }
 #endif	/* MYLINKEDLIST_H */
